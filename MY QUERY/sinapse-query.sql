@@ -327,3 +327,12 @@
             ('DATAINICIO','DATAFIM')
         )
         )
+
+
+--====================================================
+-- CRIAR PROCEDORE
+--=====================================================
+    CREATE PROCEDORE [TESTE]
+        DELETE FROM [TABLE]
+
+
