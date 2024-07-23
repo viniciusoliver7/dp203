@@ -1,0 +1,33 @@
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+CACHE 
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    [NOME DO CACHER]#outputs()[1].[coluna]
+    exemplo -> meucache#outputs()[1].MaxSK
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+foreach objetos dos json de saida 
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    @activity("step da onde esta vindo as informacoes").outputs.childItems
+
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+pegando parametro dentros dos objetos do for foreach
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    @item().[nome da chve]  
+
+    exemplo-> {name :vinicius}
+              @item().Name
+
+
+====================================================
+Parametro na procedore
+====================================================
+    Create PROCEDURE Getcompany
+        @pCustorid int
+    as
+        select * from algo where id = @pCustorid 
+
