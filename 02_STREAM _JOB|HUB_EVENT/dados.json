@@ -1,0 +1,16 @@
+[
+    {
+        "usuario": "teste@123",
+        "caractaristicas": [
+            {
+                "nome": "vinicius",
+                "nascionalidade": [
+                    {
+                        "cidade": "sao paulo",
+                        "pais": "Brasil"
+                    }
+                ]
+            }
+        ]
+    }
+]

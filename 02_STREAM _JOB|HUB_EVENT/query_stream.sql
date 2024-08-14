@@ -53,4 +53,52 @@
     from  [MinhaOrigem2]
 
 
--- =====================  =================================
+-- ===================== DESCOMPACTANDO  MATRIX =================================
+        /*
+    [
+        {
+            "usuario": "teste@123",
+            "caractaristicas": [
+                {
+                    "nome": "vinicius",
+                    "nascionalidade": [
+                        {
+                            "cidade": "sao paulo",
+                            "pais": "Brasil"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+
+        */
+
+
+    with step1 as (
+    SELECT
+        h.usuario,
+        carac.ArrayValue.nome as nome,
+        carac.ArrayValue.nascionalidade as nascionalidade
+    FROM
+        [hubjson] h
+    CROSS APPLY GetArrayElements(h.caractaristicas) as carac
+    ),step2 
+    as (
+    SELECT
+    usuario,
+    nome,
+    GetArrayElement(nascionalidade,0) nascionalidade
+    from step1 
+    ), step3 as (
+    select 
+    usuario,
+    nome,
+    nascionalidade.cidade  as cidade , 
+    nascionalidade.pais as pais 
+    from step2
+    )      
+
+    select * 
+    into [meubancodedados450]
+    from step3
