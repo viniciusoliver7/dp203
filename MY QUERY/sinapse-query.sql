@@ -336,3 +336,8 @@
         DELETE FROM [TABLE]
 
 
+--====================================================
+-- CRIAr cluster indexado
+--=====================================================
+    CREATE CLUSTERED INDEX [nome_do_cluester]
+    ON MinhaTabela (COLUNA);
