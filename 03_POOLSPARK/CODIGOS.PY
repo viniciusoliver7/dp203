@@ -19,4 +19,41 @@ display(df)
 
 
 
-#=========================================================================
+#===================================lendo arquivo json ======================================
+    #{
+    #"customerid":1,
+    #"customername":"UserA",
+    #"registered":true,
+    #"courses":["AZ-900","AZ-500","AZ-303"],
+    #"details" :
+    #	{
+    #	"mobile":"111-1112",
+    #	"city":"CityA"
+    #	}
+    #},
+
+df.select(col("customerid"), explode(col("courses")) ,  col("details.city")).show()
+
+
+#=============================================copy Command============================
+
+%sql
+COPY INTO [tabelinha]
+from "path"
+FILEFORMAT = FORMATO
+COPY_OPTIONS ("mergeSchema","True")
+
+
+#=======================================leitura com streming de dados============================
+
+shema2="pensa no schema"
+df=spark.readStream.format("cloudFiles").option("clounFile","csv").option("schema", shema).load(path)
+
+
+#===============================ESCREVENDO DADOS EM STREAMING =======================================
+
+df.writeStream.format("delta")\
+.outputMode("append")\
+.option("checkpointLocation",caminhoparalog)\
+.option("mergeSchema","True")\
+.table("minha tabelinha")
